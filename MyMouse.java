@@ -8,12 +8,17 @@ public class MyMouse implements Mouse {
 	Map <String,Character> mousesWorld=new HashMap<String,Character>();
 	private Direction last_direction;
 
+	int x=0;
+	int y=0;
+	private String mouse_name; 
 
-	public MyMouse() {
+	public MyMouse(String name) {
+		mouse_name=name;
 		mouse_life_count=3;
 		mouse_location = new Point(0,0);
 		last_direction = null;
-	
+		x=0;
+		y=0;
 	}
 
 	public boolean Kill() {
@@ -30,7 +35,7 @@ public class MyMouse implements Mouse {
 
 	@Override
 	public Direction NextMove(Action action) throws Exception {
-		
+
 		Point location = mouse_location;
 		Direction mouse_direction = last_direction;
 		if (mouse_direction == null) {
@@ -38,7 +43,7 @@ public class MyMouse implements Mouse {
 			last_direction = mouse_direction;
 			return mouse_direction;
 		}
-		
+
 		switch (action) {
 		case Ok:
 			mouse_location = location;
@@ -127,11 +132,15 @@ public class MyMouse implements Mouse {
 			break;	
 
 			}
-		
+
 		}
 
 		last_direction = mouse_direction;
 		return mouse_direction;
 	}
+
+	public String GetName() {
+		return mouse_name;
 	}
 
+	}
